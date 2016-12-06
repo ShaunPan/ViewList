@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pan.viewlist">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.CanvasActivity"/>
+        <activity android:name=".activity.CanvasView0Activity"/>
+        <activity android:name=".activity.CanvasView1Activity"/>
+        <activity android:name=".activity.CanvasView2Activity"/>
+        <activity android:name=".activity.CanvasView3Activity"/>
+        <activity android:name=".activity.CanvasView4Activity"/>
+        <activity android:name=".activity.CanvasView5Activity"/>
+        <activity android:name=".activity.PathActivity"/>
+        <activity android:name=".activity.PathView1Activity"/>
+        <activity android:name=".activity.PathView2Activity"/>
+        <activity android:name=".activity.RadarActivity"/>
+        <activity android:name=".activity.PieActivity"/>
+    </application>
+
+</manifest>

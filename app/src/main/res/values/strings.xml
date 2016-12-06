@@ -1,0 +1,117 @@
+<resources>
+
+    <!-- Title -->
+    <string name="app_name">ViewList</string>
+    <string name="pie_view">PieView</string>
+    <string name="radar_view">RadarView</string>
+    <string name="canvas">Canvas</string>
+    <string name="canvas_view_0">BaseShape</string>
+    <string name="canvas_view_1">Translate</string>
+    <string name="canvas_view_2">Scale</string>
+    <string name="canvas_view_3">Rotate</string>
+    <string name="canvas_view_4">Skew</string>
+    <string name="canvas_view_5">Save与Restore</string>
+    <string name="path">Path</string>
+    <string name="path_view_1">PathView1</string>
+    <string name="path_view_2">PathView2</string>
+
+
+    <!-- Text -->
+    <string name="path_view_1_content">
+        ***********************\n
+        path.lineTo(200,200);\n
+        path.moveTo(100,100);\n
+        path.lineTo(100,0);\n
+        path.setLastPoint(50,0);\n
+        path.close();\n
+        ***********************\n
+        lineTo(float x,float y):连线至某个点,方法中的x,y为连线的终点;\n
+        moveTo(float x,float y):移动至某个点,方法中的x,y为移动后的点,改变了下次操作的起始点;\n
+        setLastPoint(float x,float y):修改上次操作的最终点,方法中的x,y为修改后的点;\n
+        close():如果所绘制的线,其起始点和终点不重合,且链接后最终能形成封闭的图形,那么调用此方法将会达到自动封闭的效果,否则close()什么也不做.\n
+    </string>
+
+    <string name="canvas_view_1_content">
+        ***********************\n
+        canvas.drawLine(0,0,100,100,mPaint);\n
+        canvas.translate(mWidth / 2, mHeight / 2);\n
+        mPaint.setColor(Color.BLUE);\n
+        canvas.drawLine(0,0,100,100,mPaint);\n
+        ***********************\n
+        位移是基于当前位置移动，而不是每次基于屏幕左上角的(0,0)点移动\n
+    </string>
+
+    <string name="canvas_view_2_content">
+        ***********************\n
+        Path path = new Path();\n
+        path.lineTo(200,0);\n
+        path.lineTo(200,200);\n
+        path.close();\n
+        canvas.drawPath(path,mPaint);\n
+        mPaint.setColor(Color.BLUE);\n
+        canvas.scale(0.8f,0.8f);\n
+        canvas.drawPath(path,mPaint);\n
+        canvas.drawRect(0,-200,200,0,mPaint);\n
+        mPaint.setColor(Color.GRAY);\n
+        canvas.scale(-0.5f,-0.5f);\n
+        canvas.drawRect(rectF,mPaint);\n
+        ***********************\n
+        默认缩放中心为原点(0,0)\n
+        当缩放值为负数时,缩放图形会呈对角方向进行反转\n
+    </string>
+
+    <string name="canvas_view_3_content">
+        ***********************\n
+        Path path = new Path();\n
+        path.lineTo(200, 0);\n
+        path.lineTo(200, 200);\n
+        path.close();\n
+        for (int i = 0; i 小于 4; i++) {\n
+            canvas.rotate(90,100,0);// 以(100,0)这个点为旋转中心进行旋转\n
+            canvas.drawPath(path, mPaint);\n
+        }\n
+        ***********************\n
+    </string>
+
+    <string name="canvas_view_4_content">
+        ***********************\n
+        Path path = new Path();\n
+        path.lineTo(200, 0);\n
+        path.lineTo(200, 200);\n
+        path.close();\n
+        canvas.drawPath(path,mPaint);\n
+        canvas.skew(1f,0.5f);\n
+        mPaint.setColor(Color.GRAY);\n
+        canvas.drawPath(path,mPaint);\n
+        ***********************\n
+    </string>
+
+    <string name="canvas_view_5_content">
+        ***********************\n
+        canvas.save();// 创建图层1,画红色三角形,此时原点为(0,0)\n
+        // 绘制三角形路径\n
+        Path path = new Path();\n
+        path.lineTo(200, 0);\n
+        path.lineTo(200, 200);\n
+        path.close();\n
+        canvas.drawPath(path, mPaint);\n
+
+        canvas.save();// 创建图层2,画灰色三角形,此时原点为(mWidth / 2, mHeight / 2)\n
+        canvas.translate(mWidth / 2, mHeight / 2);\n
+        canvas.rotate(30);\n
+        mPaint.setColor(Color.GRAY);\n
+        canvas.drawPath(path, mPaint);\n
+        canvas.restore();//返回图层1状态,并不会影响已绘制的灰色图形\n
+
+        // 在图层1的状态下绘制黑色三角形\n
+        canvas.rotate(30);\n
+        mPaint.setColor(Color.BLACK);\n
+        canvas.drawPath(path,mPaint);\n
+        ***********************\n
+        save():相当于创建一个新的图层\n
+        restore():相当于返回最近一次操作的图层\n
+        类似PS中的图层操作,进入某个图层,操作某个图层,并不会影响其他图层的内容和状态
+    </string>
+
+
+</resources>
