@@ -35,9 +35,9 @@ public class PieActivity extends AppCompatActivity {
 
         PieView pieView = (PieView) findViewById(R.id.pieView);
         // 设置饼状图起始角度
-        pieView.setStartAngle(90);
+        pieView.setStartAngle(30);
         // 填充数据
-        pieView.fillData(createData(10));
+        pieView.fillData(createData(6));
         // 设置饼状图颜色
         // pieView.setColorArr(colorArr);
     }
@@ -58,6 +58,7 @@ public class PieActivity extends AppCompatActivity {
             float value = (i+1)*2;
             PieModel pie = new PieModel();
             pie.setValue(value);
+            pie.setName("数据"+i);
             pieModelList.add(pie);
         }
 

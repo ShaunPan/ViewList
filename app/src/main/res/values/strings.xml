@@ -13,7 +13,9 @@
     <string name="canvas_view_5">Save与Restore</string>
     <string name="path">Path</string>
     <string name="path_view_1">PathView1</string>
-    <string name="path_view_2">PathView2</string>
+    <string name="path_view_2">AddXXX与arcTo</string>
+    <string name="path_view_3">PathView3</string>
+    <string name="path_view_4">PathView4</string>
 
 
     <!-- Text -->
@@ -30,6 +32,98 @@
         setLastPoint(float x,float y):修改上次操作的最终点,方法中的x,y为修改后的点;\n
         close():如果所绘制的线,其起始点和终点不重合,且链接后最终能形成封闭的图形,那么调用此方法将会达到自动封闭的效果,否则close()什么也不做.\n
     </string>
+
+    <string name="path_view_2_content">
+        ***********************\n
+        canvas.translate(200,200);\n
+        Path path = new Path();\n
+        RectF rectF = new RectF(0,0,100,100);\n
+        path.addRect(rectF, Path.Direction.CW);\n
+        canvas.drawPath(path,mPaint);\n
+
+        canvas.translate(200,0);\n
+        path.arcTo(rectF,0,100,true);// 圆弧起点不与终点连接,等价于addArc (RectF oval, float startAngle, float sweepAngle)\n
+        mPaint.setColor(Color.RED);\n
+        canvas.drawPath(path,mPaint);\n
+
+        canvas.translate(200,0);\n
+        path.arcTo(rectF,0,100,false);// 圆弧起点与终点连接,等价于arcTo (RectF oval, float startAngle, float sweepAngle)\n
+        mPaint.setColor(Color.BLUE);\n
+        canvas.drawPath(path,mPaint);\n
+        ***********************\n
+        addXXX:添加各种形状(圆,矩形,圆角矩形,圆,圆弧)的path;\n
+        addArc与arcTo区别:path起始点是否与终点相连;\n
+        Path.Direction:CW(顺时针) 与 CCW(逆时针) 在图形渲染和绘制方向上会呈现出不同.
+    </string>
+
+    <string name="path_view_3_content">
+        ***********************\n
+        canvas.translate(200,200);\n
+        Path path = new Path();\n
+        RectF rectF = new RectF(0,0,100,100);\n
+        path.addRect(rectF, Path.Direction.CW);\n
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {\n
+            Log.i(TAG, "isConvex: "+path.isConvex());\n
+        }\n
+        Log.i(TAG, "isEmpty: "+path.isEmpty());\n
+        Log.i(TAG, "isRect: "+path.isRect(rectF));\n
+
+        Path linePath = new Path();\n
+        linePath.lineTo(100,100);\n
+        path.set(linePath);// 等价于替换path\n
+        canvas.drawPath(path,mPaint);\n
+
+        canvas.translate(200,0);\n
+        Path destPath = new Path();// 目标路径,用于存储偏移后的路径\n
+        path.offset(200,0,destPath);\n
+
+        mPaint.setColor(Color.RED);\n
+        canvas.drawPath(path,mPaint);\n
+
+        mPaint.setColor(Color.BLUE);\n
+        canvas.drawPath(destPath,mPaint);\n
+        ***********************\n
+        isEmpty():判断path中是否存在路径\n
+        isRect():判断path是否是矩形;\n
+        isConvex():判断path是否凸起\n
+        set(path):替换path\n
+        offset(x,y,destPath):当destPath为null时,偏移当前path,当destPath不为null时,将偏移后的path存储到destPath中,原path不发生变化.
+    </string>
+
+    <string name="path_view_4_content">
+        ***********************\n
+        canvas.translate(100,100);\n
+        Path path = new Path();\n
+        path.lineTo(100,100);\n
+        path.lineTo(200,200);\n
+
+        // 重置后将移除上面的线路径\n
+        path.reset();\n
+        RectF rectF = new RectF(0,0,100,100);\n
+        path.addRect(rectF, Path.Direction.CW);\n
+        mPaint.setColor(Color.RED);\n
+        canvas.drawPath(path,mPaint);\n
+
+        // 已绘制的path不会从canvas上移除,只是移除了path中存储的路径\n
+        path.reset();\n
+        canvas.translate(mCenterX,mCenterY);\n
+        canvas.scale(1,-1);\n
+        path.lineTo(50,100);\n
+        mPaint.setColor(Color.MAGENTA);\n
+        path.rLineTo(100,100);\n
+        canvas.drawPath(path,mPaint);\n
+
+        RectF boundsRect = new RectF();\n
+        path.computeBounds(boundsRect,true);\n
+        mPaint.setColor(Color.BLACK);\n
+        canvas.drawRect(boundsRect,mPaint);\n
+        ***********************\n
+        rXxx():以当前坐标为原点进行绘制\n
+        reset():移除path中的路径;\n
+        computeBounds(rect,exact):测量边界,使用矩形进行包装\n
+    </string>
+
+
 
     <string name="canvas_view_1_content">
         ***********************\n

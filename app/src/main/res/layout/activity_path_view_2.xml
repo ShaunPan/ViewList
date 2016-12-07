@@ -8,11 +8,11 @@
     <com.pan.viewlist.view.pathview.PathView2
         android:id="@+id/pathView1"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="200dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/path_view_1_content" />
+        android:text="@string/path_view_2_content" />
 
 </LinearLayout>

@@ -15,24 +15,25 @@ import android.view.View;
  * Description:
  */
 
-public class PathView2 extends View {
+public class PathView4 extends View {
 
+    private static final String TAG = "PathView4";
     private Paint mPaint;
     private int mCenterX;
     private int mCenterY;
 
 
-    public PathView2(Context context) {
+    public PathView4(Context context) {
         super(context);
         init();
     }
 
-    public PathView2(Context context, AttributeSet attrs) {
+    public PathView4(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public PathView2(Context context, AttributeSet attrs, int defStyleAttr) {
+    public PathView4(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -53,23 +54,31 @@ public class PathView2 extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        canvas.translate(200,200);
+        canvas.translate(100,100);
         Path path = new Path();
+        path.lineTo(100,100);
+        path.lineTo(200,200);
+
+        // 重置后将移除上面的线路径
+        path.reset();
         RectF rectF = new RectF(0,0,100,100);
         path.addRect(rectF, Path.Direction.CW);
-        canvas.drawPath(path,mPaint);
-
-        canvas.translate(200,0);
-        // 圆弧起点不与终点连接,等价于addArc (RectF oval, float startAngle, float sweepAngle)
-        path.arcTo(rectF,0,100,true);
         mPaint.setColor(Color.RED);
         canvas.drawPath(path,mPaint);
 
-        canvas.translate(200,0);
-        // 圆弧起点与终点连接,等价于arcTo (RectF oval, float startAngle, float sweepAngle)
-        path.arcTo(rectF,0,100,false);
-        mPaint.setColor(Color.BLUE);
+        // 已绘制的path不会从canvas上移除,只是移除了path中存储的路径
+        path.reset();
+        canvas.translate(mCenterX,mCenterY);
+        canvas.scale(1,-1);
+        path.lineTo(50,100);
+        mPaint.setColor(Color.MAGENTA);
+        path.rLineTo(100,100);
         canvas.drawPath(path,mPaint);
+
+        RectF boundsRect = new RectF();
+        path.computeBounds(boundsRect,true);
+        mPaint.setColor(Color.BLACK);
+        canvas.drawRect(boundsRect,mPaint);
 
     }
 }

@@ -14,7 +14,11 @@ import com.pan.viewlist.R;
 public class PathActivity extends AppCompatActivity {
 
     private ListView mListView;
-    private String[] itemName = {"moveTo,lineTo,setLastPoint,close","addXxx与arcTo","isEmpty、isRect、isConvex、set和offset"};
+    private String[] itemName = {
+            "moveTo,lineTo,setLastPoint,close",
+            "addXxx与arcTo",
+            "isEmpty、isRect、isConvex、set和offset",
+            "rXXX,填充模式,布尔操作,计算边界,重置路径"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,10 @@ public class PathActivity extends AppCompatActivity {
                         startActivity(PathView2Activity.createIntent(PathActivity.this));
                         break;
                     case 2:
-
+                        startActivity(PathView3Activity.createIntent(PathActivity.this));
+                        break;
+                    case 3:
+                        startActivity(PathView4Activity.createIntent(PathActivity.this));
                         break;
                     default:
                         break;
