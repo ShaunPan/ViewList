@@ -36,6 +36,9 @@ public class PieActivity extends AppCompatActivity {
         PieView pieView = (PieView) findViewById(R.id.pieView);
         // 设置饼状图起始角度
         pieView.setStartAngle(30);
+//        pieView.setExtendLine(10);
+//        pieView.setLineDis(10);
+//        pieView.setTextSize(50);
         // 填充数据
         pieView.fillData(createData(6));
         // 设置饼状图颜色
@@ -62,7 +65,7 @@ public class PieActivity extends AppCompatActivity {
             pieModelList.add(pie);
         }
 
-        for (int i = 0; i < pieModelList.size(); i++){
+        for (int i = 0; i < dataListSize; i++){
             PieModel pieModel = pieModelList.get(i);
             float value = pieModel.getValue();
             dataCount += value;

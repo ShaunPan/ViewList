@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".activity.PaintActivity"/>
+        <activity android:name=".activity.PaintView1Activity"/>
         <activity android:name=".activity.CanvasActivity"/>
         <activity android:name=".activity.CanvasView0Activity"/>
         <activity android:name=".activity.CanvasView1Activity"/>

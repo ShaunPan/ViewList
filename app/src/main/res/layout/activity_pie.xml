@@ -9,8 +9,9 @@
     <com.pan.viewlist.view.PieView
         android:id="@+id/pieView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="match_parent"
         android:background="@color/material_blue_grey_800"
+        android:padding="30dp"
         />
 
 

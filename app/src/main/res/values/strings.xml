@@ -4,6 +4,8 @@
     <string name="app_name">ViewList</string>
     <string name="pie_view">PieView</string>
     <string name="radar_view">RadarView</string>
+    <string name="paint">Paint</string>
+    <string name="paint_view_1">基础设置</string>
     <string name="canvas">Canvas</string>
     <string name="canvas_view_0">BaseShape</string>
     <string name="canvas_view_1">Translate</string>
@@ -19,6 +21,13 @@
 
 
     <!-- Text -->
+    <string name="paint_view_1_content">
+        ***********************\n
+
+        ***********************\n
+        掌握文字的宽高测量\n
+    </string>
+
     <string name="path_view_1_content">
         ***********************\n
         path.lineTo(200,200);\n
