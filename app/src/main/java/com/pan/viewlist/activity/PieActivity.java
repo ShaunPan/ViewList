@@ -34,8 +34,6 @@ public class PieActivity extends AppCompatActivity {
         setTitle(R.string.pie_view);
 
         PieView pieView = (PieView) findViewById(R.id.pieView);
-        // 设置饼状图起始角度
-        pieView.setStartAngle(30);
 //        pieView.setExtendLine(10);
 //        pieView.setLineDis(10);
 //        pieView.setTextSize(50);

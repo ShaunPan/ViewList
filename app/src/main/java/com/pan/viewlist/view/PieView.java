@@ -161,15 +161,6 @@ public class PieView extends View {
     }
 
     /**
-     * 设置起始角度
-     * @param angle 起始角度
-     */
-    public void setStartAngle(float angle){
-        this.startAngle = angle;
-        invalidate();
-    }
-
-    /**
      * 设置颜色
      * @param colorArr 颜色数组
      */
