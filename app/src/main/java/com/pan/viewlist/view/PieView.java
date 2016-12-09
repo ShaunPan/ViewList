@@ -18,18 +18,13 @@ import java.util.List;
  * Date:   2016/11/26
  * Description:
  * 自定义饼状图
- * 1.初始化画笔,填充状态
- * 2.设定颜色集
- * 3.以画布中心点为圆心绘制圆
- * 4.根据数据遍历绘制弧度,使用圆心,记录绘制完毕后的角度,作为下一个弧度的起始角度
- * 5.提供设置起始角度的接口,提供设置绘制颜色的接口
+ * 1.绘制饼状图
+ * 2.绘制半径的延长线
+ * 3.绘制文字及文字下划线
+ * 4.提供接口
  */
 
 public class PieView extends View {
-
-    //颜色集合
-    int[] colorArr = {0xFFCCFF00, 0xFF6495ED, 0xFFE32636, 0xFF800000, 0xFF808000, 0xFFFF8C69, 0xFF808080,
-            0xFFE6B800, 0xFF7CFC00};
 
     private static final String TAG = "PieView";
 
@@ -48,8 +43,12 @@ public class PieView extends View {
     //文字与下划线之间距离
     private float lineDis = 10;
 
-    //绘制区域的宽高
+    //View的宽高
     private int mWidth,mHeight;
+
+    //颜色集合
+    int[] colorArr = {0xFFCCFF00, 0xFF6495ED, 0xFFE32636, 0xFF800000,
+            0xFF808000, 0xFFFF8C69, 0xFF808080,0xFFE6B800, 0xFF7CFC00};
 
     public PieView(Context context) {
         this(context,null);
@@ -90,11 +89,15 @@ public class PieView extends View {
             return;
         }
 
+        //适配padding属性
+        int finalW = mWidth - getPaddingLeft() - getPaddingRight();
+        int finalH = mHeight - getPaddingTop() - getPaddingBottom();
+
         //将画布移动至中心点
         canvas.translate(mWidth / 2,mHeight / 2);
 
         // 圆半径
-        float r = (float) (Math.min(mWidth, mHeight) / 2 * 0.8);
+        float r = (float) (Math.min(finalW, finalH) / 2 * 0.8);
 
         for (int j = 0; j < mPieModels.size(); j++) {
 
@@ -133,16 +136,16 @@ public class PieView extends View {
             canvas.drawLine(x,y,extendX,extendY,anglePaint);
 
             //绘制文字和下划线
-            if (halfAngle >=0 && halfAngle < 90){
+            if (halfAngle >=0 && halfAngle < 90){//第一象限
                 canvas.drawLine(extendX,extendY,extendX + dis,extendY,anglePaint);
                 canvas.drawText(name,extendX,extendY -lineDis,anglePaint);
-            }else if (halfAngle >=90 && halfAngle <180){
+            }else if (halfAngle >=90 && halfAngle <180){//第二象限
                 canvas.drawLine(extendX,extendY,extendX - dis,extendY,anglePaint);
                 canvas.drawText(name,extendX-dis,extendY -lineDis,anglePaint);
-            }else if (halfAngle >=180 && halfAngle <270){
+            }else if (halfAngle >=180 && halfAngle <270){//第三象限
                 canvas.drawLine(extendX,extendY,extendX - dis,extendY,anglePaint);
                 canvas.drawText(name,extendX-dis,extendY-lineDis,anglePaint);
-            }else if (halfAngle >=270 && halfAngle < 360) {
+            }else if (halfAngle >=270 && halfAngle < 360) {//第四象限
                 canvas.drawLine(extendX,extendY,extendX + dis,extendY,anglePaint);
                 canvas.drawText(name,extendX,extendY-lineDis,anglePaint);
             }

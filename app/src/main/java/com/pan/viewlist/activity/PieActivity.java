@@ -37,10 +37,10 @@ public class PieActivity extends AppCompatActivity {
 //        pieView.setExtendLine(10);
 //        pieView.setLineDis(10);
 //        pieView.setTextSize(50);
-        // 填充数据
-        pieView.fillData(createData(6));
         // 设置饼状图颜色
         // pieView.setColorArr(colorArr);
+        // 填充数据
+        pieView.fillData(createData(6));
     }
 
 
